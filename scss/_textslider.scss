@@ -1,0 +1,74 @@
+/* Slideshow container */
+.slideshow-container {
+    position: absolute;
+    color: #fff;
+    max-width: 900px;
+    top: 50%;
+    transform: translateY(-50%);
+    span{
+        font-size: calc(30px + (60 - 30) * (100vw - 768px) / (1440 - 768));
+        font-weight: 900;
+    }
+  }
+  
+  /* Slides */
+  .mySlides {
+    display: none;
+    padding: calc(80px + (60 - 42) * (100vw - 768px) / (1440 - 768));;
+    text-align: left;
+    margin-top: 10%;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -30px;
+    padding: 16px;
+    color: #888;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    position: absolute;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  
+nav{
+    position: relative;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: rgb(0 0 0 / 73%);
+        width: 100%;
+        height: 100%;
+        z-index: -9;
+    }
+}
+
+.arrow-box{
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    color: #fff;
+    .prev{
+        right: 60px;
+    }
+    .next{
+
+    }
+}

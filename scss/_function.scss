@@ -1,0 +1,5 @@
+$baseurl: "../images/";
+
+@function bg_img($url){
+    @return url($baseurl + $url);
+}

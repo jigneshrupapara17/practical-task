@@ -1,0 +1,841 @@
+html {
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+.center-xy {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.spacer-sm-y {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.spacer-md-y {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.spacer-lg-y {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.hidden-elem {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.nav.nav--solid .nav--bar {
+  color: #000;
+  background-color: #fff;
+  border-bottom: 1px solid #efefef;
+  overflow: hidden;
+}
+.nav.nav--solid .nav--toggle {
+  color: #000;
+}
+.nav .nav--bar {
+  color: #fff;
+  width: 100%;
+  padding: 15px 20px;
+  transition: all 0.15s ease;
+  position: fixed;
+  z-index: 99999;
+}
+.nav .nav--bar .nav--brand {
+  font-size: 18px;
+}
+.nav .nav--bar .nav--brand a {
+  color: inherit;
+  text-decoration: none;
+}
+.nav .nav--toggle {
+  color: #fff;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.15s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  float: right;
+}
+.nav .nav--toggle:hover .nav--navicon .nav--navicon-line:nth-of-type(1), .nav .nav--toggle:focus .nav--navicon .nav--navicon-line:nth-of-type(1) {
+  transform: translate(0, 2px);
+}
+.nav .nav--toggle:hover .nav--navicon .nav--navicon-line:nth-of-type(3), .nav .nav--toggle:focus .nav--navicon .nav--navicon-line:nth-of-type(3) {
+  transform: translate(0, -2px);
+}
+.nav .nav--toggle.active .nav--navicon .nav--navicon-line:nth-of-type(1) {
+  transform: translate(0px, 9px) rotate(45deg);
+  transition-delay: 0.1s;
+}
+.nav .nav--toggle.active .nav--navicon .nav--navicon-line:nth-of-type(2) {
+  transform: scaleX(0);
+  opacity: 0;
+}
+.nav .nav--toggle.active .nav--navicon .nav--navicon-line:nth-of-type(3) {
+  transform: translate(0px, -9px) rotate(-45deg);
+  transition-delay: 0.1s;
+}
+.nav .nav--label-container {
+  white-space: nowrap;
+  position: relative;
+  display: inline-block;
+}
+.nav .nav--label-container .nav--label {
+  color: inherit;
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+  transition-property: transform, opacity;
+  display: inline-block;
+}
+.nav .nav--label-container .nav--label:last-of-type {
+  top: 0;
+  right: 0;
+  transform: translateY(-100%);
+  position: absolute;
+  opacity: 0;
+}
+.nav .nav--navicon {
+  vertical-align: middle;
+  width: 31px;
+  height: 20px;
+  display: inline-block;
+  color: #fff;
+}
+.nav .nav--navicon .nav--navicon-line {
+  background-color: currentColor;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 8px;
+  transform-origin: center;
+  transition: all 0.15s ease-out;
+  transition-property: transform, opacity;
+  display: block;
+}
+.nav .nav--navicon .nav--navicon-line:nth-of-type(2) {
+  transform-origin: center;
+}
+.nav .nav--menu-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s ease;
+  position: fixed;
+  z-index: 99997;
+  visibility: hidden;
+  opacity: 0;
+}
+.nav .nav--menu-bg {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: all 0.2s ease-in;
+  position: fixed;
+  z-index: 99998;
+}
+.nav .nav--menu-bg:before, .nav .nav--menu-bg:after {
+  content: "";
+  border: 1px solid transparent;
+  border-bottom-color: #C8CEDA;
+  width: 20px;
+  height: 20px;
+  margin: 20px;
+  bottom: 0;
+  position: absolute;
+  display: block;
+}
+.nav .nav--menu-bg:before {
+  border-left-color: #C8CEDA;
+}
+.nav .nav--menu-bg:after {
+  border-right-color: #C8CEDA;
+  right: 0;
+}
+.nav .nav--menu {
+  color: #000;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  transition: all 0.15s ease;
+  position: fixed;
+  overflow: hidden;
+  z-index: 99998;
+  visibility: hidden;
+  opacity: 0;
+  content: "";
+}
+.nav .nav--menu .nav--menu-container {
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.nav .nav--menu ul {
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.nav .nav--menu li {
+  font-size: 24px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+.nav .nav--menu li.active a {
+  color: #009688;
+  opacity: 1;
+}
+.nav .nav--menu a {
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  display: inline-block;
+  transition: all 0.2s ease;
+  position: relative;
+  opacity: 0.6;
+}
+.nav .nav--menu a:hover, .nav .nav--menu a:focus {
+  transform: scale(1.2);
+  opacity: 1;
+}
+.nav .nav--menu a:hover:after, .nav .nav--menu a:focus:after {
+  transform: scaleX(1);
+}
+.nav .nav--menu a:after {
+  background-color: currentColor;
+  width: 30px;
+  height: 1px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  transform: scaleX(0);
+  transition: all 0.2s ease;
+  position: absolute;
+  content: "";
+}
+
+.nav--is-visible {
+  overflow-y: hidden;
+}
+.nav--is-visible .nav .nav--brand {
+  color: #000;
+}
+.nav--is-visible .nav .nav--toggle {
+  color: #000;
+}
+.nav--is-visible .nav .nav--label-container .nav--label {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.nav--is-visible .nav .nav--label-container .nav--label:last-of-type {
+  transform: translateY(0%);
+  opacity: 1;
+}
+.nav--is-visible .nav .nav--menu-backdrop {
+  visibility: visible;
+  opacity: 1;
+}
+.nav--is-visible .nav .nav--menu-bg {
+  transform: scale(1);
+}
+.nav--is-visible .nav .nav--menu {
+  visibility: visible;
+  opacity: 1;
+  background-color: #000;
+}
+.nav--is-visible .nav .nav--menu li {
+  opacity: 1;
+  transform: translateY(0%);
+}
+.nav--is-visible .nav .nav--menu li a {
+  color: #fff;
+  font-size: 40px;
+  font-style: italic;
+}
+.nav--is-visible .nav .nav--menu li:nth-child(1) {
+  transition-delay: 0.2s;
+}
+.nav--is-visible .nav .nav--menu li:nth-child(2) {
+  transition-delay: 0.3s;
+}
+.nav--is-visible .nav .nav--menu li:nth-child(3) {
+  transition-delay: 0.4s;
+}
+.nav--is-visible .nav .nav--menu li:nth-child(4) {
+  transition-delay: 0.5s;
+}
+
+.intro-container {
+  color: #fff;
+  background-color: #00796B;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+.intro-container .intro-initials,
+.intro-container .intro-title {
+  width: 100%;
+}
+.intro-container .intro-initials span,
+.intro-container .intro-title span {
+  padding: 20px;
+  display: block;
+}
+.intro-container .intro-initials {
+  font-size: 150px;
+  opacity: 0.1;
+}
+.intro-container .intro-title {
+  font-size: 30px;
+  line-height: 1.2;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.intro-container .intro-arrow-container {
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  position: absolute;
+}
+.intro-container .intro-arrow-container .intro-arrow {
+  width: 23px;
+  height: 32px;
+  position: relative;
+}
+.intro-container .intro-arrow-container .intro-arrow .intro-arrow--line {
+  background-color: #fff;
+  width: 1px;
+  height: 100%;
+  bottom: 0;
+  left: 11px;
+  transform-origin: top;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+}
+.intro-container .intro-arrow-container .intro-arrow .intro-arrow--tip {
+  background-color: #fff;
+  width: 13px;
+  height: 1px;
+  bottom: 5px;
+  position: absolute;
+}
+.intro-container .intro-arrow-container .intro-arrow .intro-arrow--tip-right {
+  right: 0;
+  transform: rotate(-45deg);
+}
+.intro-container .intro-arrow-container .intro-arrow .intro-arrow--tip-left {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.main-content {
+  background: white;
+  width: 100%;
+}
+
+.section {
+  padding: 50px 0;
+}
+.section .section-title {
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.section .section-text-container {
+  margin-bottom: 30px;
+}
+.section .section-text-container .section-title {
+  margin-bottom: 5px;
+}
+.section .section-text-container p {
+  margin: 0;
+}
+
+.section--about {
+  text-align: center;
+}
+.section--about .profile-img-container {
+  vertical-align: middle;
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+}
+.section--about .profile-img-container:hover .profile-img:first-of-type, .section--about .profile-img-container:focus .profile-img:first-of-type {
+  transform: scale(1);
+  opacity: 1;
+}
+.section--about .profile-img-container:hover .profile-img:last-of-type, .section--about .profile-img-container:focus .profile-img:last-of-type {
+  transform: scale(0);
+  opacity: 0;
+}
+.section--about .profile-img-container .profile-img {
+  width: 80px;
+  border-radius: 100%;
+  transition: all 0.2s ease;
+  display: block;
+}
+.section--about .profile-img-container .profile-img:first-of-type {
+  transform: scale(0);
+  opacity: 0;
+}
+.section--about .profile-img-container .profile-img:last-of-type {
+  top: 0;
+  position: absolute;
+  transform: scale(1);
+  opacity: 1;
+}
+.section--about .section-text-container {
+  margin-bottom: 0;
+}
+.section--about .about-text-container {
+  vertical-align: middle;
+  max-width: 580px;
+  display: inline-block;
+}
+
+.icon-container {
+  display: block;
+  font-size: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.icon-container li {
+  display: inline-block;
+  margin: 0 3px;
+}
+.icon-container a, .icon-container svg {
+  display: block;
+}
+.icon-container a {
+  position: relative;
+  height: 30px;
+  width: 30px;
+}
+.icon-container .icon {
+  fill: #C8CEDA;
+}
+.icon-container .icon:hover {
+  fill: #aab3c5;
+}
+.icon-container svg {
+  height: 100%;
+  width: 100%;
+}
+
+.footer-main {
+  color: #C8CEDA;
+  width: 100%;
+  padding: 15px 0;
+}
+.footer-main .footer-text {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+@media screen and (min-width: 576px) {
+  .footer-main .footer-text {
+    margin-bottom: 0;
+    display: inline-block;
+  }
+  .footer-main .icon-container {
+    float: right;
+  }
+}
+@media screen and (min-width: 768px) {
+  .section {
+    padding: 100px 0;
+  }
+  .section .section-title {
+    font-size: 36px;
+  }
+  .section--about .profile-img-container .profile-img {
+    width: 140px;
+  }
+  .section--about p {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .section--about .profile-img-container {
+    margin-right: 30px;
+    margin-bottom: 0;
+  }
+  .section--about .about-text-container {
+    text-align: left;
+  }
+}
+/* Slideshow container */
+.slideshow-container {
+  position: absolute;
+  color: #fff;
+  max-width: 900px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.slideshow-container span {
+  font-size: calc(30px + 30 * (100vw - 768px) / 672);
+  font-weight: 900;
+}
+
+/* Slides */
+.mySlides {
+  display: none;
+  padding: calc(80px + 18 * (100vw - 768px) / 672);
+  text-align: left;
+  margin-top: 10%;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+nav {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+}
+nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.73);
+  width: 100%;
+  height: 100%;
+  z-index: -9;
+}
+
+.arrow-box {
+  position: absolute;
+  right: 0;
+  bottom: 50px;
+  color: #fff;
+}
+.arrow-box .prev {
+  right: 60px;
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* common style */
+/*! HTML5 Boilerplate v8.0.0 | MIT License | https://html5boilerplate.com/ */
+/* main.css 2.1.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+html {
+  color: #222;
+  line-height: 1.4rem;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * Vendor-prefixed and regular ::selection selectors cannot be combined:
+ * https://stackoverflow.com/a/16982510/7133471
+ *
+ * Customize the background color to match your design.
+ */
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+textarea {
+  resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+ * Hide visually and from screen readers
+ */
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ *
+ * 1. For long content, line feeds are not interpreted as spaces and small width
+ *    causes content to wrap 1 word per line:
+ *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
+ */
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  /* 1 */
+}
+
+/*
+ * Extends the .sr-only class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+.sr-only.focusable:active,
+.sr-only.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  white-space: inherit;
+  width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+.invisible {
+  visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+@media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ========================================================================== */
+@media print {
+  *,
+*::before,
+*::after {
+    background: #fff !important;
+    color: #000 !important;
+    /* Black prints faster */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  a,
+a:visited {
+    text-decoration: underline;
+  }
+  a[href]::after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+  a[href^="#"]::after,
+a[href^="javascript:"]::after {
+    content: "";
+  }
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  /*
+   * Printing Tables:
+   * https://web.archive.org/web/20180815150934/http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+  thead {
+    display: table-header-group;
+  }
+  tr,
+img {
+    page-break-inside: avoid;
+  }
+  p,
+h2,
+h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+h3 {
+    page-break-after: avoid;
+  }
+}
+/* end */
+nav {
+  background: url("../images/banner.png");
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav ul li {
+  list-style: none;
+}
+nav ul a {
+  text-decoration: none;
+  color: #000;
+  font-size: 2rem;
+}
+
+.row {
+  display: flex;
+}/*# sourceMappingURL=style.css.map */

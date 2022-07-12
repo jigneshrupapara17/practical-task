@@ -1,0 +1,21 @@
+@mixin nav($nav_txt_size, $nav_color) {
+    ul{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: $nav_color;
+            font-size: $nav_txt_size;
+        }
+    }
+}
+
+@mixin bg-pr {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
